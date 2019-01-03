@@ -24,10 +24,12 @@ class Session:
             'auth': self.session
         }
         qs.update(params)
+
         response = self.requester.get(url=self.url, params=qs)
-        print(response.text)
+
         if out == 'xml':
             return fromstring(response.text)
+
         if out == 'json' or out == 'sjson':
             response = response.json()['doc']
             if 'error' in response:
@@ -46,7 +48,3 @@ class Session:
         if 'error' in response:
             raise ApiException(response['error']['$object'])
         self.session = response['auth']['$']
-
-
-if __name__ == '__main__':
-    s = Session()

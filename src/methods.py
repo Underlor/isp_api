@@ -15,8 +15,8 @@ class Methods:
             'sok': 'ok',
             **input_params
         }
+
         response = self.session.send_request(func, params)
-        pprint(response)
         return response
 
     def del_domain(self, elid: str):
@@ -27,8 +27,8 @@ class Methods:
         params = {
             'elid': elid,
         }
+
         response = self.session.send_request(func, params)
-        pprint(response)
         return response
 
     def edit_user(self, name, password, **input_params):
@@ -39,6 +39,7 @@ class Methods:
             'passwod': password,
             **input_params,
         }
+
         response = self.session.send_request(func, params)
         return response
 
@@ -52,6 +53,7 @@ class Methods:
             'confirm': password,
             **input_params,
         }
+
         response = self.session.send_request(func, params)
         return response
 
@@ -60,5 +62,6 @@ class Methods:
         params = {
             'elid': name,
         }
+        
         response = self.session.send_request(func, params)
         return response
