@@ -2,7 +2,7 @@ import setuptools
 
 setuptools.setup(
     name='isp_sdk',
-    version='0.4.2',
+    version='0.5.0',
     author="Popov Aleksander",
     author_email="admin@alexue4.ru",
     url="https://github.com/Underlor/isp_api",
