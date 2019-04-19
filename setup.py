@@ -1,6 +1,6 @@
-from setuptools import setup
+import setuptools
 
-setup(
+setuptools.setup(
     name='isp_sdk',
     version='0.4.2',
     author="Popov Aleksander",
@@ -8,6 +8,7 @@ setup(
     url="https://github.com/Underlor/isp_api",
     description="ISP Panel Api SDK",
     install_requires=['requests', ],
+    packages=setuptools.find_packages(),
     license='Creative Commons Attribution-Noncommercial-Share Alike license',
     long_description=open('README.md').read(),
 )
