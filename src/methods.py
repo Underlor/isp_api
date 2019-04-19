@@ -1,5 +1,3 @@
-from pprint import pprint
-
 from .sessions import Session
 
 
@@ -62,6 +60,6 @@ class Methods:
         params = {
             'elid': name,
         }
-        
+
         response = self.session.send_request(func, params)
         return response
