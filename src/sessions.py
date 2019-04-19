@@ -43,8 +43,11 @@ class Session:
             'username': self.username,
             'password': self.password,
         }
-        response = self.requester.get(url=self.url, params=params).json()['doc']
+
+        response = self.requester.get(url=self.url, params=params, verify=False)
+        doc = response.json()['doc']
 
         if 'error' in response:
-            raise ApiException(response['error']['$object'])
-        self.session = response['auth']['$']
+            raise ApiException(doc['error']['$object'])
+
+        self.session = doc['auth']['$']
