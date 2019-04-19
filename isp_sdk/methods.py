@@ -5,7 +5,7 @@ from .sessions import Session
 
 class Methods:
     def __init__(self, session: Session):
-        self.session = session if session else Session()
+        self.session = session
 
     def edit_domain(self, **input_params):
         func = 'webdomain.edit'
