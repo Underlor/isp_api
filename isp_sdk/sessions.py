@@ -17,15 +17,20 @@ class Session:
     def __del__(self):
         self.requester.close()
 
-    def send_request(self, func, params, out='sjson'):
-        qs = {
+    def _send_request(self, request_data: dict) -> requests.Response:
+
+        response = self.requester.get(url=self.url, params=request_data, verify=False)
+        return response
+
+    def send_request(self, func: str, params: dict, out: str = 'sjson'):
+        request_data = {
             'out': out,
             'func': func,
             'auth': self.session
         }
-        qs.update(params)
+        request_data.update(params)
 
-        response = self.requester.get(url=self.url, params=qs)
+        response = self._send_request(request_data)
 
         if out == 'xml':
             return fromstring(response.text)
@@ -35,16 +40,17 @@ class Session:
             if 'error' in response:
                 raise ApiException(response['error']['msg']['$'])
             return response
+        return response
 
     def update_session(self):
-        params = {
+        request_data = {
             'func': 'auth',
             'out': 'sjson',
             'username': self.username,
             'password': self.password,
         }
 
-        response = self.requester.get(url=self.url, params=params, verify=False)
+        response = self._send_request(request_data)
         doc = response.json()['doc']
 
         if 'error' in response:
